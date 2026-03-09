@@ -1,4 +1,4 @@
 package org.firstinspires.ftc.teamcode.Teleop;
 
-public class Teleop {
+public class Teleop extends{
 }
