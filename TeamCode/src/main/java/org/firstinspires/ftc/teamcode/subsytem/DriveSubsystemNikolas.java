@@ -25,12 +25,6 @@ public class DriveSubsystemNikolas {
         
     }
     public double clamp(double f, double s, double t) {
-        if (f + s + t > 1) {
-            return 1;
-        } else if (f + s + t < -1) {
-            return -1;
-        } else {
-            return f + s + t;
-        }
+        return Math.max(-1, Math.min(1, f+s+t));
     }
 }
