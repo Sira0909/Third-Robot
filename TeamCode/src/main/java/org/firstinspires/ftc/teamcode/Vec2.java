@@ -52,8 +52,8 @@ public class Vec2 {
     public Vec2   toLocal(Vec2 v, Vec2 n){return subt(v).rotN(n);}
     public Vec2   fromLocal(Vec2 v, double a){return rot(a).add(v);}
     public Vec2   fromLocal(Vec2 v, Vec2 n){return rot(n).add(v);}
-//    public Vec2   toLocal(Pose2 p){return toLocal(p, p.a);}
-//    public Vec2   fromLocal(Pose2 p){return fromLocal(p,p.a);}
+    public Vec2   toLocal(Pose2 p){return toLocal(p, p.a);}
+    public Vec2   fromLocal(Pose2 p){return fromLocal(p,p.a);}
     public double tol(Vec2 v){return Math.max(Math.abs(x-v.x),Math.abs(y-v.y));}
     public boolean closeTol(Vec2 v){return Math.max(Math.abs(x-v.x),Math.abs(y-v.y))<1e-9;}
     public boolean equals(Vec2 v){return x==v.x&&y==v.y;}

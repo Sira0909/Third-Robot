@@ -1,5 +1,6 @@
-package org.firstinspires.ftc.teamcode.subsytem;
+package org.firstinspires.ftc.teamcode.systems;
 import com.arcrobotics.ftclib.hardware.motors.Motor;
+import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import org.firstinspires.ftc.teamcode.Vec2;
 
@@ -10,13 +11,28 @@ public class wheels{
     f3=0,f4=0;
 
     public Motor
-    m1=new Motor(),m2=new Motor(),
-    m3=new Motor(),m4=new Motor();
+    m1,m2,
+    m3,m4;
 
 
     public wheels(){
+        (m1=new Motor()).setZeroPowerBehavior(Motor.ZeroPowerBehavior.BRAKE);
+        (m2=new Motor()).setZeroPowerBehavior(Motor.ZeroPowerBehavior.BRAKE);
+        (m3=new Motor()).setZeroPowerBehavior(Motor.ZeroPowerBehavior.BRAKE);
+        (m4=new Motor()).setZeroPowerBehavior(Motor.ZeroPowerBehavior.BRAKE);
+    }
+    public wheels(Motor fl,Motor fr, Motor bl,Motor br){
+        m1=fl;m2=fr;m3=bl;m4=br;
+    }
+    public wheels(HardwareMap hMap){
+        (m1=new Motor(hMap,"wheelFL")).setZeroPowerBehavior(Motor.ZeroPowerBehavior.BRAKE);
+        (m2=new Motor(hMap,"wheelFR")).setZeroPowerBehavior(Motor.ZeroPowerBehavior.BRAKE);
+        (m3=new Motor(hMap,"wheelBL")).setZeroPowerBehavior(Motor.ZeroPowerBehavior.BRAKE);
+        (m4=new Motor(hMap,"wheelBR")).setZeroPowerBehavior(Motor.ZeroPowerBehavior.BRAKE);
 
     }
+
+
     public void setForce(Vec2 v, double t){setForceVec(v.x,v.y,t);}
     public void setForce(Vec2 v, double t,double a){setForceVec(v.x,v.y,t,a);}
     public void setForce(double angle,double force, double t){setForceAng(angle,force,t);}

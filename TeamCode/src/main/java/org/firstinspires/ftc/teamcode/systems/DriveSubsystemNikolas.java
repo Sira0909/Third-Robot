@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.subsytem;
+package org.firstinspires.ftc.teamcode.systems;
 
 import com.arcrobotics.ftclib.hardware.motors.Motor;
 
