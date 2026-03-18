@@ -14,7 +14,7 @@ public class RPose extends Pose2{
     public void setDir(Vec2 v){if(a.equals(v))return;a.set(v);dir=a.angle();}
     public final Vec2 fieldVel = new Vec2();
     public final Vec2 localVel = new Vec2();
-    public double rVel=0;
+    public double turnVel =0;
 
     public Vec2 pos(){return new Vec2(fieldPos);}
     public Pose2 pose2(){return new Pose2(fieldPos);}

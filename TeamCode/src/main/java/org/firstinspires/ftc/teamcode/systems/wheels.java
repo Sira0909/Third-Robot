@@ -29,7 +29,6 @@ public class wheels{
         (m2=new Motor(hMap,"wheelFR")).setZeroPowerBehavior(Motor.ZeroPowerBehavior.BRAKE);
         (m3=new Motor(hMap,"wheelBL")).setZeroPowerBehavior(Motor.ZeroPowerBehavior.BRAKE);
         (m4=new Motor(hMap,"wheelBR")).setZeroPowerBehavior(Motor.ZeroPowerBehavior.BRAKE);
-
     }
 
 
