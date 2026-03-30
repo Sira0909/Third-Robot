@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode;
 
+import com.qualcomm.robotcore.hardware.Gamepad;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import org.firstinspires.ftc.teamcode.systems.Drive;
@@ -13,4 +14,5 @@ public class robot {
     public static final Drive drive=new Drive();
 
     public static final HardwareMap hmap;
+    public static final Gamepad gpad=new Gamepad();
 }

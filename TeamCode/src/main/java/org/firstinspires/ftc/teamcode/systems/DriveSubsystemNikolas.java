@@ -16,10 +16,15 @@ public class DriveSubsystemNikolas {
     }
 
     public void drivePowers(double forward, double strafe, double turn) {
-        double flP = clamp(forward * Math.cos(), strafe * Math.sin(), turn);
-        double frP = clamp(forward * Math.cos(), -strafe * Math.sin(), -turn);
-        double blP = clamp(forward * Math.cos(), -strafe * Math.sin(), turn);
-        double brP = clamp(forward * Math.cos(), strafe * Math.sin(), -turn); // Expected 1 argument but found 0
+        double flP = clamp(forward, strafe, turn);
+        double frP = clamp(forward, -strafe, -turn);
+        double blP = clamp(forward, -strafe, turn);
+        double brP = clamp(forward, strafe, -turn);
+
+        frontLeft.set(flP);
+        frontRight.set(frP);
+        backLeft.set(blP);
+        backRight.set(brP);
 
         //double max = Math.abs(forward) + Math.abs(strafe);
         
