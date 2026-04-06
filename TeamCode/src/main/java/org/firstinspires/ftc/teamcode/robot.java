@@ -11,5 +11,5 @@ public class robot {
     public static final RPose RPose =new RPose();
     public static final Drive drive=new Drive();
 
-    public static final HardwareMap hmap;
+    //public static final HardwareMap hmap= new HardwareMap()
 }

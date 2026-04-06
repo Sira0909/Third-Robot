@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode.systems;
 
+import com.arcrobotics.ftclib.drivebase.MecanumDrive;
 import com.arcrobotics.ftclib.hardware.motors.Motor;
 
 public class DriveSubsystemNikolas {
@@ -14,7 +15,18 @@ public class DriveSubsystemNikolas {
         backLeft = bL;
         backRight = bR;
     }
-
+    public void fl(){
+        frontLeft.set(.3);
+    }
+    public void bl(){
+        backLeft.set(.3);
+    }
+    public void fr(){
+        frontRight.set(.3);
+    }
+    public void br(){
+        backRight.set(.3);
+    }
     public void drivePowers(double forward, double strafe, double turn) {
         double flP = clamp(forward, strafe, turn);
         double frP = clamp(forward, -strafe, -turn);
