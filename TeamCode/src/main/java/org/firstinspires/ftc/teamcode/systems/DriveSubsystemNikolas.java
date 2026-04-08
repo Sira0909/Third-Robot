@@ -8,6 +8,7 @@ public class DriveSubsystemNikolas {
     public final Motor frontRight;
     public final Motor backLeft;
     public final Motor backRight;
+    public double multiplier = .3;
 
     public DriveSubsystemNikolas(Motor fL, Motor fR, Motor bL, Motor bR) {
         frontLeft = fL;
@@ -28,10 +29,10 @@ public class DriveSubsystemNikolas {
         backRight.set(.3);
     }
     public void drivePowers(double forward, double strafe, double turn) {
-        double flP = clamp(forward, strafe, turn);
-        double frP = clamp(forward, -strafe, -turn);
-        double blP = clamp(forward, -strafe, turn);
-        double brP = clamp(forward, strafe, -turn);
+        double flP = multiplier*clamp(forward, strafe, turn);
+        double frP = multiplier*clamp(forward, -strafe, -turn);
+        double blP = multiplier*clamp(forward, -strafe, turn);
+        double brP = multiplier*clamp(forward, strafe, -turn);
 
         frontLeft.set(flP);
         frontRight.set(frP);
