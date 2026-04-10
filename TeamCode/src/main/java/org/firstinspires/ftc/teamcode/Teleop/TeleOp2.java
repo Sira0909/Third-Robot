@@ -5,15 +5,16 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import org.firstinspires.ftc.teamcode.HardwareRobot;
+import org.firstinspires.ftc.teamcode.systems.DriveSubsystemNikolas;
 import org.firstinspires.ftc.teamcode.systems.MadisonDriveSubsys;
 
-@TeleOp(name = "madisonTeleOp")
-public class MadisonTeleOp extends LinearOpMode{
+@TeleOp(name = "teleop that works")
+public class TeleOp2 extends LinearOpMode{
 
     public void runOpMode() throws InterruptedException{
 
         HardwareRobot robot = new HardwareRobot(hardwareMap);
-        MadisonDriveSubsys drive = new MadisonDriveSubsys(
+        DriveSubsystemNikolas drive = new DriveSubsystemNikolas(
                 robot.leftFront,
                 robot.rightFront,
                 robot.leftBack,
@@ -21,7 +22,7 @@ public class MadisonTeleOp extends LinearOpMode{
         );
         waitForStart();
         while(opModeIsActive()) {
-            drive.DriveRobotCentricPowers(gamepad1.left_stick_x, gamepad1.left_stick_y, gamepad1.right_stick_x);
+            drive.drivePowers(-gamepad1.left_stick_y, gamepad1.left_stick_x, gamepad1.right_stick_x);
         }
 
     }

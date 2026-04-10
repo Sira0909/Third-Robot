@@ -8,7 +8,7 @@ public class DriveSubsystemNikolas {
     public final Motor frontRight;
     public final Motor backLeft;
     public final Motor backRight;
-    public double multiplier = .3;
+    public double multiplier = .5;
 
     public DriveSubsystemNikolas(Motor fL, Motor fR, Motor bL, Motor bR) {
         frontLeft = fL;
