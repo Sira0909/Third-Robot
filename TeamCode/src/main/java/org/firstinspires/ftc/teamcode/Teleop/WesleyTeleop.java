@@ -6,7 +6,7 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import org.firstinspires.ftc.teamcode.HardwareRobot;
 import org.firstinspires.ftc.teamcode.systems.DriveSubsystemNikolas;
 
-@TeleOp(name = "nikolas")
+@TeleOp(name = "wes")
 public class WesleyTeleop extends LinearOpMode {
     public void runOpMode() throws InterruptedException {
         HardwareRobot robot = new HardwareRobot(hardwareMap);
