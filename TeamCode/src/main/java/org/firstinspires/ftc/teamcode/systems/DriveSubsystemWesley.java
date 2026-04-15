@@ -1,16 +1,15 @@
 package org.firstinspires.ftc.teamcode.systems;
 
-import com.arcrobotics.ftclib.drivebase.MecanumDrive;
 import com.arcrobotics.ftclib.hardware.motors.Motor;
 
-public class DriveSubsystemNikolas {
+public class DriveSubsystemWesley {
     public final Motor frontLeft;
     public final Motor frontRight;
     public final Motor backLeft;
     public final Motor backRight;
     public double multiplier = .5;
 
-    public DriveSubsystemNikolas(Motor fL, Motor fR, Motor bL, Motor bR) {
+    public DriveSubsystemWesley(Motor fL, Motor fR, Motor bL, Motor bR) {
         frontLeft = fL;
         frontRight = fR;
         backLeft = bL;
