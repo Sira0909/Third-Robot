@@ -1,13 +1,13 @@
 package org.firstinspires.ftc.teamcode.Teleop;
 
-
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import org.firstinspires.ftc.teamcode.HardwareRobot;
 import org.firstinspires.ftc.teamcode.systems.DriveSubsystemNikolas;
 
-public class Teleop extends LinearOpMode{
+@TeleOp(name = "wes")
+public class WesleyTeleop extends LinearOpMode {
     public void runOpMode() throws InterruptedException {
         HardwareRobot robot = new HardwareRobot(hardwareMap);
         DriveSubsystemNikolas drive = new DriveSubsystemNikolas(
@@ -17,9 +17,23 @@ public class Teleop extends LinearOpMode{
                 robot.rightBack
         );
         waitForStart();
-
+        double x=0,y=0,t=0;
         while(opModeIsActive()) {
-            drive.drivePowers(gamepad1.left_stick_x, -gamepad1.left_stick_y, gamepad1.right_stick_x);
+            if (gamepad1.squareWasPressed()) {
+            } else if (gamepad1.triangleWasPressed()) {
+            } else if (gamepad1.circle) {
+                drive.fr();
+            } else if (gamepad1.cross) {
+                drive.br();
+            } else {
+
+                x=gamepad1.left_stick_y;
+                y=gamepad1.left_stick_x;
+                t=gamepad1.right_stick_x;
+
+
+                drive.drivePowers(-x, y, t);
+            }
         }
     }
 }

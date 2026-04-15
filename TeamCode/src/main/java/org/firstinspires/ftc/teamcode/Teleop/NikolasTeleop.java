@@ -17,9 +17,13 @@ public class NikolasTeleop extends LinearOpMode {
                 robot.rightBack
         );
         waitForStart();
-
+        double f = 0,s = 0,t = 0;
         while(opModeIsActive()) {
-            drive.drivePowers(gamepad1.left_stick_x, -gamepad1.left_stick_y, gamepad1.right_stick_x);
+            f = -gamepad1.left_stick_y;
+            s = gamepad1.left_stick_x;
+            t = gamepad1.right_stick_x;
+
+            drive.drivePowers(f, s, t);
         }
     }
 }

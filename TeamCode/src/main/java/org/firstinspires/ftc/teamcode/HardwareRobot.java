@@ -16,7 +16,7 @@ public class HardwareRobot {
     public final Motor rightFront;
     public final Motor leftBack;
     public final Motor rightBack;
-    public final WebcamName cameraName;
+    //public final WebcamName cameraName;
     public final IMU imu;
 
     public HardwareRobot(HardwareMap hardwareMap) {
@@ -41,9 +41,9 @@ public class HardwareRobot {
         rightBack.setRunMode(Motor.RunMode.RawPower);
 
         leftFront.setInverted(true);
-        rightFront.setInverted(true);
+        rightFront.setInverted(false);
         leftBack.setInverted(true);
-        rightBack.setInverted(true);
+        rightBack.setInverted(false);
 
         leftFront.motor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         rightFront.motor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
@@ -55,7 +55,7 @@ public class HardwareRobot {
         leftBack.setZeroPowerBehavior(Motor.ZeroPowerBehavior.BRAKE);
         rightBack.setZeroPowerBehavior(Motor.ZeroPowerBehavior.BRAKE);
         imu = hardwareMap.get(IMU.class, "imu");
-        cameraName = hardwareMap.get(WebcamName.class, "Webcam 1");
+        //cameraName = hardwareMap.get(WebcamName.class, "Webcam 1");
     }
     public void setImu() {
         RevHubOrientationOnRobot orientationOnRobot =
