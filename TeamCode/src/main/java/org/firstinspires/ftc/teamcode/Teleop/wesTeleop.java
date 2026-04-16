@@ -33,8 +33,16 @@ public class wesTeleop extends LinearOpMode {
             drive.wheels.updMotion();
             anglePrev=angle;
             angle+=drive.wheels.motionT;
+            double turnVel=angle-anglePrev;
+            double error=targetAngle-angle;
 
-            t=.1*(targetAngle-angle)-.5*(angle-anglePrev);
+            t=.1*error-.5*turnVel;
+
+            telemetry.addData("angle",angle);
+            telemetry.addData("target",targetAngle);
+            telemetry.addData("error",error);
+            telemetry.addData("vel",turnVel);
+            telemetry.addData("force",t);
 
 
             drive.local(-x, y, t);
