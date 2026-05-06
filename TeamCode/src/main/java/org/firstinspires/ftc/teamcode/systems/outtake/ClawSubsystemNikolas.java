@@ -2,6 +2,7 @@ package org.firstinspires.ftc.teamcode.systems.outtake;
 
 import com.qualcomm.robotcore.hardware.Servo;
 
+
 public class ClawSubsystemNikolas {
     public final Servo clawServo;
     private boolean open;

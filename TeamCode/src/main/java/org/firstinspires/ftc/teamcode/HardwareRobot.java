@@ -1,6 +1,8 @@
 package org.firstinspires.ftc.teamcode;
 
 import com.arcrobotics.ftclib.hardware.motors.Motor;
+import com.qualcomm.robotcore.hardware.Servo;
+
 import com.qualcomm.hardware.rev.RevHubOrientationOnRobot;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
@@ -16,6 +18,9 @@ public class HardwareRobot {
     public final Motor rightFront;
     public final Motor leftBack;
     public final Motor rightBack;
+    public final Motor arm;
+    public final Servo wrist;
+    public final Servo claw;
     //public final WebcamName cameraName;
     public final IMU imu;
 
@@ -24,21 +29,33 @@ public class HardwareRobot {
         rightFront = new Motor(hardwareMap, "rightFront", Motor.GoBILDA.RPM_312);
         leftBack = new Motor(hardwareMap, "leftBack", Motor.GoBILDA.RPM_312);
         rightBack = new Motor(hardwareMap, "rightBack", Motor.GoBILDA.RPM_312);
+        arm = new Motor(hardwareMap, "arm", Motor.GoBILDA.RPM_312);
+
+        wrist = hardwareMap.servo.get("wristServo");
+        claw = hardwareMap.servo.get("clawServo");
+
+        wrist.scaleRange(0,1);
+        claw.scaleRange(0,1);
 
         leftFront.motor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         rightFront.motor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         leftBack.motor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         rightBack.motor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        arm.motor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
         leftFront.motor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         rightFront.motor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         leftBack.motor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         rightBack.motor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        arm.motor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+
 
         leftFront.setRunMode(Motor.RunMode.RawPower);
         rightFront.setRunMode(Motor.RunMode.RawPower);
         leftBack.setRunMode(Motor.RunMode.RawPower);
         rightBack.setRunMode(Motor.RunMode.RawPower);
+        arm.setRunMode(Motor.RunMode.RawPower);
+
 
         leftFront.setInverted(true);
         rightFront.setInverted(false);
@@ -49,11 +66,14 @@ public class HardwareRobot {
         rightFront.motor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         leftBack.motor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         rightBack.motor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        arm.motor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+
 
         leftFront.setZeroPowerBehavior(Motor.ZeroPowerBehavior.BRAKE);
         rightFront.setZeroPowerBehavior(Motor.ZeroPowerBehavior.BRAKE);
         leftBack.setZeroPowerBehavior(Motor.ZeroPowerBehavior.BRAKE);
         rightBack.setZeroPowerBehavior(Motor.ZeroPowerBehavior.BRAKE);
+        arm.setZeroPowerBehavior(Motor.ZeroPowerBehavior.BRAKE);
         imu = hardwareMap.get(IMU.class, "imu");
         //cameraName = hardwareMap.get(WebcamName.class, "Webcam 1");
     }
