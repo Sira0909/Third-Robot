@@ -1,51 +1,60 @@
 package org.firstinspires.ftc.teamcode.Teleop;
 
-import static org.firstinspires.ftc.teamcode.utils.drive;
-
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
-
+import com.arcrobotics.ftclib.hardware.ServoEx;
 import org.firstinspires.ftc.teamcode.HardwareRobot;
-import org.firstinspires.ftc.teamcode.systems.Drive;
 import org.firstinspires.ftc.teamcode.systems.DriveSubsystemNikolas;
+import org.firstinspires.ftc.teamcode.systems.outtake.ArmSubsystemNikolas;
+import org.firstinspires.ftc.teamcode.systems.outtake.ClawSubsystemNikolas;
 
 @TeleOp(name = "wes")
 public class wesTeleop extends LinearOpMode {
     public void runOpMode() throws InterruptedException {
         HardwareRobot robot = new HardwareRobot(hardwareMap);
-
+        DriveSubsystemNikolas drive = new DriveSubsystemNikolas(
+                robot.leftFront,
+                robot.rightFront,
+                robot.leftBack,
+                robot.rightBack
+        );
+        ClawSubsystemNikolas claw = new ClawSubsystemNikolas(robot.claw);
+        ArmSubsystemNikolas arm = new ArmSubsystemNikolas(robot.arm, robot.wrist);
         waitForStart();
-        double x=0,y=0,t=0,targetAngle=0,angle=0,anglePrev=0;
+        double f, s, t,
+        armTargetPos=0,
+        lastArmPos=0,
+        lastTime=0;
+
         while(opModeIsActive()) {
+            double time=1.e-9*System.nanoTime();
+            double dt=(time-lastTime);
+            lastTime=time;
+
+            f = -gamepad1.left_stick_y;
+            s = gamepad1.left_stick_x;
+            t = gamepad1.right_stick_x;
+
+            drive.drivePowers(f, s, t);
+
             if (gamepad1.squareWasPressed()) {
-            } else if (gamepad1.triangleWasPressed()) {
-            } else if (gamepad1.circle) {
-
-            } else if (gamepad1.cross) ;
+                claw.toggle();
+            }
 
 
+            double armPos=arm.armMotor.getCurrentPosition();
+            double armRate=dt*(armPos-lastArmPos);
+            lastArmPos=armPos;
 
+            double armError=armTargetPos-armPos;
 
-            x=gamepad1.left_stick_y;
-            y=gamepad1.left_stick_x;
-            targetAngle+=gamepad1.right_stick_x/10.;
+            arm.setArmPower(-2.*armRate+1*armError);
 
-            drive.wheels.updMotion();
-            anglePrev=angle;
-            angle+=drive.wheels.motionT;
-            double turnVel=angle-anglePrev;
-            double error=targetAngle-angle;
-
-            t=.1*error-.5*turnVel;
-
-            telemetry.addData("angle",angle);
-            telemetry.addData("target",targetAngle);
-            telemetry.addData("error",error);
-            telemetry.addData("vel",turnVel);
-            telemetry.addData("force",t);
-
-
-            drive.local(-x, y, t);
+            if (gamepad1.dpad_down) {
+                armTargetPos+=dt;
+            } else if (gamepad1.dpad_up) {
+                armTargetPos-=dt;
+            }
         }
     }
 }
