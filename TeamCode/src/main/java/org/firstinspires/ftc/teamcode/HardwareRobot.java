@@ -28,6 +28,7 @@ public class HardwareRobot {
     public final Servo claw;
     //public final WebcamName cameraName;
     public final IMU imu;
+    public final Limelight3A limelight;
 
     public HardwareRobot(HardwareMap hardwareMap) {
         leftFront = new Motor(hardwareMap, "leftFront", Motor.GoBILDA.RPM_312);
@@ -38,6 +39,10 @@ public class HardwareRobot {
 
         wrist = hardwareMap.servo.get("wristServo");
         claw = hardwareMap.servo.get("clawServo");
+
+        limelight = hardwareMap.get(Limelight3A.class, "limelight");
+        limelight.setPollRateHz(100);
+        limelight.start();
 
         wrist.scaleRange(0,1);
         claw.scaleRange(0,1);
