@@ -8,6 +8,11 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.IMU;
 
+import com.qualcomm.hardware.limelightvision.LLResult;
+import com.qualcomm.hardware.limelightvision.LLResultTypes;
+import com.qualcomm.hardware.limelightvision.LLStatus;
+import com.qualcomm.hardware.limelightvision.Limelight3A;
+
 import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 import org.firstinspires.ftc.robotcore.external.navigation.YawPitchRollAngles;
@@ -41,7 +46,7 @@ public class HardwareRobot {
         claw = hardwareMap.servo.get("clawServo");
 
         limelight = hardwareMap.get(Limelight3A.class, "limelight");
-        limelight.setPollRateHz(100);
+        limelight.setPollRateHz(100); //100 times per second
         limelight.start();
 
         wrist.scaleRange(0,1);
