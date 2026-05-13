@@ -1,10 +1,12 @@
 package org.firstinspires.ftc.teamcode.Teleop;
 
+import com.qualcomm.hardware.limelightvision.Limelight3A;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.arcrobotics.ftclib.hardware.ServoEx;
 import org.firstinspires.ftc.teamcode.HardwareRobot;
 import org.firstinspires.ftc.teamcode.systems.DriveSubsystemNikolas;
+import org.firstinspires.ftc.teamcode.systems.LL3A;
 import org.firstinspires.ftc.teamcode.systems.outtake.ArmSubsystemNikolas;
 import org.firstinspires.ftc.teamcode.systems.outtake.ClawSubsystemNikolas;
 
@@ -20,6 +22,7 @@ public class NikolasTeleop extends LinearOpMode {
         );
         ClawSubsystemNikolas claw = new ClawSubsystemNikolas(robot.claw);
         ArmSubsystemNikolas arm = new ArmSubsystemNikolas(robot.arm, robot.wrist);
+        LL3A limelight = new LL3A(robot);
         waitForStart();
         double f, s, t;
         while(opModeIsActive()) {
@@ -40,6 +43,8 @@ public class NikolasTeleop extends LinearOpMode {
                 arm.setArmPower(0);
             }
             arm.setWristAngle(gamepad1.right_stick_y);
+
+            limelight.getBlob();
         }
     }
 }

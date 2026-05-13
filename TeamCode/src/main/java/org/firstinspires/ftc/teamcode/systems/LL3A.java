@@ -1,28 +1,41 @@
 package org.firstinspires.ftc.teamcode.systems;
 
+import com.qualcomm.hardware.limelightvision.LLResult;
+import com.qualcomm.hardware.limelightvision.LLResultTypes;
 import com.qualcomm.hardware.limelightvision.Limelight3A;
 
-import java.util.ArrayList;
+import org.firstinspires.ftc.teamcode.HardwareRobot;
+
+import java.util.List;
 
 
 public class LL3A {
     public static final double fovX=54.5, fovY=42., vw=Math.tan(fovX/2.),vh=Math.tan(fovY/2.);
+    private Limelight3A limelight;
+    List<LLResultTypes.ColorResult> blobs;
 
-    public static final ArrayList<LL3A> lllist=new ArrayList<>(1);
-
-    Limelight3A ll;
     double xpos,ypos,zpos,xa,ya,za;
     /// relative to robot x is forwards, y up, z side
-    public LL3A(double X, double Y, double Z, double xAngle, double yAngle,double zAngle) {
-        set(X,Y,Z,xAngle,yAngle,zAngle);
-
-        lllist.add(this);
+    public LL3A(HardwareRobot hardwaremap) {
+        limelight = hardwaremap.limelight;
     }
     public void set(double X, double Y, double Z,double xAngle,double yAngle,double zAngle){
         xpos=X;ypos=Y;zpos=Z;xa=xAngle;ya=yAngle;
     }
 
-
+    public LLResultTypes.ColorResult getBlob() {
+        LLResult result = limelight.getLatestResult();
+        blobs = result.getColorResults();
+        LLResultTypes.ColorResult biggest = blobs.get(0);
+        double area = 0;
+        for (LLResultTypes.ColorResult blob : blobs) {
+            if (blob.getTargetArea() > area) {
+                area = blob.getTargetArea();
+                biggest = blob;
+            }
+        }
+        return biggest;
+    }
 
 
 
