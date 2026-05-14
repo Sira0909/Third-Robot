@@ -48,7 +48,6 @@ public class HardwareRobot {
 
         limelight = hardwareMap.get(Limelight3A.class, "limelight");
         limelight.setPollRateHz(100); //100 times per second
-        limelight.start();
 
         wrist.scaleRange(0,1);
         claw.scaleRange(0,1);
