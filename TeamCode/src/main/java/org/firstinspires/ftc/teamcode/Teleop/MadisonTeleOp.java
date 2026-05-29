@@ -3,6 +3,8 @@ package org.firstinspires.ftc.teamcode.Teleop;
 import com.arcrobotics.ftclib.hardware.motors.Motor;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+import org.firstinspires.ftc.teamcode.systems.LL3A;
+import com.qualcomm.hardware.limelightvision.Limelight3A;
 
 import org.firstinspires.ftc.teamcode.HardwareRobot;
 import org.firstinspires.ftc.teamcode.systems.MadisonDriveSubsys;
@@ -20,6 +22,7 @@ public class MadisonTeleOp extends LinearOpMode{
                 robot.rightBack
         );
         waitForStart();
+        LL3A ll = new LL3A(robot);
         while(opModeIsActive()) {
             drive.DriveRobotCentricPowers(gamepad1.left_stick_x, gamepad1.left_stick_y, gamepad1.right_stick_x);
         }
