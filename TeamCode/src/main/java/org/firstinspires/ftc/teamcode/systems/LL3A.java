@@ -10,6 +10,7 @@ import java.util.List;
 
 
 public class LL3A {
+    private final double HEIGHT = 1;
     public static final double fovX=54.5, fovY=42., vw=Math.tan(fovX/2.),vh=Math.tan(fovY/2.);
     private Limelight3A limelight;
     List<LLResultTypes.ColorResult> blobs;
@@ -35,6 +36,10 @@ public class LL3A {
             }
         }
         return biggest;
+    }
+    public double getDist() {
+        LLResultTypes.ColorResult blob = getBlob();
+        return HEIGHT/(Math.tan(blob.getTargetYDegrees()));
     }
 
 

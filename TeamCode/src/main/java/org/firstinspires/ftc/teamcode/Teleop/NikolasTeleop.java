@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode.Teleop;
 
+import com.qualcomm.hardware.limelightvision.LLResultTypes;
 import com.qualcomm.hardware.limelightvision.Limelight3A;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
@@ -44,7 +45,7 @@ public class NikolasTeleop extends LinearOpMode {
             }
             arm.setWristAngle(gamepad1.right_stick_y);
 
-            limelight.getBlob();
+            System.out.println(limelight.getDist());
         }
     }
 }
